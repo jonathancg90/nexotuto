@@ -1,0 +1,52 @@
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/foundation.css">
+	{% block styles %}
+
+	{% endblock styles %}
+</head>
+<body>
+
+	<nav class="top-bar" data-topbar role="navigation">
+	  <ul class="title-area">
+	    <li class="name">
+	      <h1><a href="#">Nexonet</a></h1>
+	    </li>
+	     <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+	    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	  </ul>
+
+	  <section class="top-bar-section">
+	    <!-- Right Nav Section -->
+	    <ul class="right">
+	    {% if user.is_authenticated %}
+	    	  <li><a href="">{{ user.email }}</a></li>
+			  <li><a href="{% url 'logout' %}">Salir</a></li>
+		      
+		{% else %}
+			  <li><a href="{% url 'login' %}">Ingresa</a></li>
+		      <li><a href="{% url 'sign_up' %}">Registrate</a></li>
+		{% endif %}
+		</ul>
+	  </section>
+	</nav>
+	<div class="container">
+		{% for message in messages %}
+		    <div class="alert alert-{{ message.tags }}">
+		      <a class="close" data-dismiss="alert" href="#">×</a>
+		      <p>{% autoescape off %}{{ message }}{% endautoescape %}</p>
+		    </div>
+	  	{% endfor %}
+		{% block content %}
+
+		{% endblock content %}
+	</div>
+	<script src="{{ STATIC_URL }}js/vendor/jquery.js"></script>
+	<script src="{{ STATIC_URL }}js/foundation.min.js"></script>
+
+{% block scripts %}
+
+{% endblock scripts %}
+</body>
+</html>
