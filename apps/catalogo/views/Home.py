@@ -35,7 +35,7 @@ class LoginView(FormView):
         return super(LoginView, self).get(request, *args, **kwargs)
 
     def get_success_url(self):
-        return reverse('home')
+        return reverse('product_list')
 
 
 class SignUpView(CreateView):
