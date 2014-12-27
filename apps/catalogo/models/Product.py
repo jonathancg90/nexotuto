@@ -14,7 +14,8 @@ class Product(models.Model):
     category = models.ManyToManyField(
         'Category',
         related_name='product_set',
-        null=True
+        null=True,
+        blank=True
     )
 
     name = models.CharField(
@@ -46,4 +47,4 @@ class Product(models.Model):
     )
 
     class Meta:
-        app_label = 'cat'
+        app_label = 'catalogo'

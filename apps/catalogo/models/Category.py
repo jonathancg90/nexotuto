@@ -31,4 +31,4 @@ class Category(models.Model):
     )
 
     class Meta:
-        app_label = 'cat'
+        app_label = 'catalogo'

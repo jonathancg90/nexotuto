@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.views.generic import CreateView
 from django.views.generic import UpdateView
@@ -7,8 +6,9 @@ from django.views.generic import DeleteView
 from django.views.generic import ListView
 
 from apps.common.access import LoginRequiredMixin
-from apps.catalogo.forms import ProductForm
+from apps.catalogo.forms.ProductForm import ProductForm
 from apps.catalogo.models.Product import Product
+
 
 
 class ProductListView(LoginRequiredMixin, ListView):
@@ -16,7 +16,7 @@ class ProductListView(LoginRequiredMixin, ListView):
     template_name = 'admin/product/list.html'
 
 
-class ProductCreateView(LoginRequiredMixin, CreateView):
+class ProductCreateView(CreateView):
     model = Product
     form_class = ProductForm
     template_name = 'admin/product/create.html'
@@ -28,7 +28,7 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
 class ProductUpdateView(LoginRequiredMixin, UpdateView):
     model = Product
     form_class = ProductForm
-    template_name = 'admin/product/edit.html'
+    template_name = 'admin/product/update.html'
 
     def get_success_url(self):
         return reverse('product_list')

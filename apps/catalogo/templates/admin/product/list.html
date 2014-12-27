@@ -2,26 +2,27 @@
 {% extends 'base.html' %}
  
 {% block content %}
+    <div class="row">
+        <a href="{% url 'product_create' %}" class="button">Crear</a>
 
-        <table>
-            <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Opciones</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for country in object_list %}
+            <table>
+                <thead>
                 <tr>
-                    <td>{{ country.name }}</td>
-                    <td>
-                        <a href="{% url "departament_list" country=country.pk %}">Departamentos</a> |
-                        <a href="{% url "country_edit" country.pk %}">Actualizar</a> |
-                        <a href="{% url "country_delete" country.pk %}">Eliminar</a>
-                    </td>
+                    <th>Nombre</th>
+                    <th>Opciones</th>
                 </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-
+                </thead>
+                <tbody>
+                {% for product in object_list %}
+                    <tr>
+                        <td>{{ product.name }}</td>
+                        <td>
+                            <a href="{% url "product_edit" product.pk %}">Actualizar</a> |
+                            <a href="{% url "product_delete" product.pk %}">Eliminar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+    </div>
 {% endblock %}
